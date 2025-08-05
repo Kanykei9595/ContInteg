@@ -9,7 +9,7 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      # 1. Клонируем код из репозитория
+      # 1. Клонируем код из репозитори
       - name: Checkout Code
         uses: actions/checkout@v4  # Была ошибка: 'chekout' вместо 'checkout'
       # 2. Устанавливаем Node.js
