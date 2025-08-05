@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - Node.js with Docker and AWS
+name: CI/CD Pipeline - Node.js with Docker & AWS
 on:
  push:
    branches:
@@ -20,6 +20,8 @@ on:
      # 3. Install dependencies
      - name: install dependencies
         run: npm install
+        with:
+          "version" "18"
      # 4. Run Test
      - name: Run Test
         run: npm test
