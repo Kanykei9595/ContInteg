@@ -67,8 +67,9 @@ jobs:
           script: |
             REGISTRY=619071316700.dkr.ecr.us-west-2.amazonaws.com
             REPO_NAME=myapp
-
-            /usr/local/bin/aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REGIST  docker pull $REGISTRY/$REPO_NAME:latest
+            
+            /usr/local/bin/aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REGISTRY
+            docker pull $REGISTRY/$REPO_NAME:latest
             docker stop myapp || true
             docker rm myapp || true
             docker run -d --name myapp -p 80:80 $REGISTRY/$REPO_NAME:latest
