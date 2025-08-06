@@ -74,7 +74,7 @@ jobs:
             REPO_NAME=myapp
 
             aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REGISTRY
-
+            fuser -k 80/tsp || true
             docker pull $REGISTRY/$REPO_NAME:latest
             docker stop myapp || true
             docker rm myapp || true
