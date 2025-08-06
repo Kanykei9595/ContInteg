@@ -78,4 +78,4 @@ jobs:
             docker pull $REGISTRY/$REPO_NAME:latest
             docker stop myapp || true
             docker rm myapp || true
-            docker run -d --name myapp -p 8099:80 $REGISTRY/$REPO_NAME:latest
+            docker run -d --name myapp -p 80:80 $REGISTRY/$REPO_NAME:latest
