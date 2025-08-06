@@ -67,7 +67,7 @@ jobs:
           script: |
             REGISTRY=${{ steps.login-ecr.outputs.registry }}
             REPO_NAME=myapp
-            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REGISTRY
+            usr/local/bin/aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REGISTRY
             docker pull $REGISTRY/$REPO_NAME:latest
             docker stop myapp || true
             docker rm myapp || true
