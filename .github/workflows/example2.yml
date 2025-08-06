@@ -65,11 +65,16 @@ jobs:
           username: ${{ secrets.EC2_USER }}  # Было неправильно: снова EC2_HOST
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            mkdir -p ~/.aws
+            echo "[default]" > ~/.aws/credentials
+            echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
+            echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
+
             REGISTRY=619071316700.dkr.ecr.us-west-2.amazonaws.com
             REPO_NAME=myapp
 
-            /usr/local/bin/aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REGISTRY
-            
+            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REGISTRY
+
             docker pull $REGISTRY/$REPO_NAME:latest
             docker stop myapp || true
             docker rm myapp || true
